@@ -1,5 +1,5 @@
 # YouTube-Automation
 
 Installs:
-pip install openai
-pip install python-dotenv
+-pip install openai  
+-pip install python-dotenv
