@@ -1,5 +1,5 @@
 # YouTube-Automation
 
 Installs:  
--pip install openai  
+-pip install google-generativeai
 -pip install python-dotenv
