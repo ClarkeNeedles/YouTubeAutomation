@@ -1,24 +1,24 @@
 import os
+import google.generativeai as genai
 from dotenv import load_dotenv
-from openai import OpenAI
+
 
 # Load environment variables
 load_dotenv()
 
-client = OpenAI(
-    # Get environment variable key
-    api_key=os.getenv("OPENAI_API_KEY"),
-)
+# Load API Key from .env file
+api_key = os.getenv("GOOGLE_API_KEY")
+
+genai.configure(api_key=api_key)
 
 def generate_script(topic):
-    prompt = f"Write a short-form video script under 60 seconds for the topic: '{topic}'"
-    response = client.responses.create(
-        model="gpt-4o",
-        instructions="You are a coding assistant that talks like a pirate.",
-        input=prompt,
-    )
+    model = genai.GenerativeModel('gemini-1.5-pro')
 
-    return response.output_text
+    prompt = f"Write a short, engaging video script under 60 seconds for: '{topic}'. Focus on being snappy and interesting."
 
-# Example
-print(generate_script("Why saving money in your 20s matters"))
+    response = model.generate_content(prompt)
+
+    return response.text.strip()
+
+with open("output.txt", "w") as f:
+  f.write(generate_script("The Science of Sleep"))
