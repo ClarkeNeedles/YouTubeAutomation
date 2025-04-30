@@ -1,3 +1,6 @@
 # ignored files
 /.idea
 .env
+moods.txt
+scripts.txt
+topics.txt
